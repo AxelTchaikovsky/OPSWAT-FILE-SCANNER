@@ -128,12 +128,10 @@ public class FileRenderer implements FileRendererInterface {
     System.out.println("filename: " + json.getJSONObject("file_info").getString("display_name"));
     System.out.println("overall status: " + json.getJSONObject("scan_results").getString("scan_all_result_a"));
     var scanDetails = json.getJSONObject("scan_results").getJSONObject("scan_details");
-    var keys = scanDetails.keys();
-    while (keys.hasNext()) {
-      String key = keys.next();
+    var keys = scanDetails.keySet();
+    for (var key : keys) {
       JSONObject item = scanDetails.getJSONObject(key);
-      String engine = item.keys().toString();
-      System.out.println("engine: " + engine);
+      System.out.println("engine: " + key);
       if (Objects.equals(item.getString("threat_found"), "")) {
         System.out.println("threat_found: Clean");
       } else {
