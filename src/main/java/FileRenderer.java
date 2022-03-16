@@ -24,7 +24,6 @@ public class FileRenderer implements FileRendererInterface {
   }
 
   public static void main(String[] args) {
-    System.out.println("hello");
     if (args.length != 2) {
       System.out.println("Invalid operands.");
       return;
@@ -115,6 +114,8 @@ public class FileRenderer implements FileRendererInterface {
     } else if (response.code() == 200) {
       JSONObject json = new JSONObject(response.body().string());
       printHelper(json);
+    } else {
+      System.out.println("HTTP errors: " + response.code());
     }
   }
 
