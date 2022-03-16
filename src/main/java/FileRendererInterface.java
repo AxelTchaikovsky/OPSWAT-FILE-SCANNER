@@ -6,6 +6,6 @@ import java.security.NoSuchAlgorithmException;
 
 public interface FileRendererInterface {
     String getHash(String path) throws NoSuchAlgorithmException, IOException;
-    Response hashLookUp(String hash);
-    void printResult(Response response);
+    Response hashLookUp(String hash) throws IOException;
+    void printResult(Response response, String path) throws IOException;
 }
