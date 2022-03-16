@@ -2,7 +2,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -10,17 +9,53 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 import java.util.Objects;
 
 public class FileRenderer implements FileRendererInterface {
   private String apiKey;
-  FileRenderer() {}
+
+  FileRenderer() {
+  }
+
   FileRenderer(String apiKey) {
     this.apiKey = apiKey;
   }
+
+  public static void main(String[] args) {
+    System.out.println("hello");
+    if (args.length != 2) {
+      System.out.println("Invalid operands.");
+      return;
+    }
+    if (!Objects.equals(args[0], "upload_file")) {
+      System.out.println("Invalid operand.");
+      return;
+    }
+    File file = new File(args[1]);
+    if (!file.exists()) {
+      System.out.println("File doesn't exist.");
+      return;
+    }
+    /*
+     * Put your api key here:
+     */
+    var apiKey = "7748d6f208c2fd42db1f6045e07e2b7b";
+    var path = args[1];
+    FileRenderer fileRenderer = new FileRenderer(apiKey);
+    try {
+      var hash = fileRenderer.getHash(path);
+      var response = fileRenderer.hashLookUp(hash);
+      fileRenderer.printResult(response, path);
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+  }
+
   @Override
   public String getHash(String path) throws NoSuchAlgorithmException, IOException {
     String md5;
@@ -85,6 +120,7 @@ public class FileRenderer implements FileRendererInterface {
 
   /**
    * Print scan message to standard out.
+   *
    * @param json Json object fetched from server.
    */
   public void printHelper(JSONObject json) {
@@ -105,38 +141,5 @@ public class FileRenderer implements FileRendererInterface {
       System.out.println("def_time: " + item.getString("def_time"));
       System.out.println("scan_result: " + item.getInt("scan_result_i"));
     }
-  }
-
-  public static void main(String[] args) {
-    System.out.println("hello");
-    if (args.length != 2) {
-      System.out.println("Invalid operands.");
-      return;
-    }
-    if (!Objects.equals(args[0], "upload_file")) {
-      System.out.println("Invalid operand.");
-      return;
-    }
-    File file = new File(args[1]);
-    if (!file.exists()) {
-      System.out.println("File doesn't exist.");
-      return;
-    }
-    /*
-     * Put your api key here:
-     */
-    var apiKey = "7748d6f208c2fd42db1f6045e07e2b7b";
-    var path = args[1];
-    FileRenderer fileRenderer = new FileRenderer(apiKey);
-    try {
-      var hash = fileRenderer.getHash(path);
-      var response = fileRenderer.hashLookUp(hash);
-      fileRenderer.printResult(response, path);
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
   }
 }
