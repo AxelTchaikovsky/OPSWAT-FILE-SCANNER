@@ -1,1 +1,159 @@
 # OPSWAT-FILE-SCANNER
+
+This is a project for scanning a file against metadefender.opswat.com API.
+
+Running the project
+```
+mvn install
+mvn exec:java -Dexec.args="upload_file $FILENAME$"
+```
+
+
+Sample output
+```
+[ Upload file for scan... ]
+[ dataId: bzIyMDMxNi1GcTJ0VGZhQjBLTkdVUjJpRlA ]
+filename: FileRenderer.java
+overall status: No Threat Detected
+engine: java.util.HashMap$KeyIterator@696d18b0
+threat_found: Clean
+def_time: 2022-03-16T01:06:22.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@326743a6
+threat_found: Clean
+def_time: 2022-03-16T00:00:00.000Z
+scan_result: 23
+engine: java.util.HashMap$KeyIterator@7df5714d
+threat_found: Clean
+def_time: 2022-03-15T20:38:22.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@4ee46773
+threat_found: Clean
+def_time: 2022-02-14T15:01:15.000Z
+scan_result: 23
+engine: java.util.HashMap$KeyIterator@64e59ce2
+threat_found: Clean
+def_time: 2022-03-15T12:36:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@6c1789ab
+threat_found: Clean
+def_time: 2022-03-15T15:34:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@3a3ee27d
+threat_found: Clean
+def_time: 2022-03-15T12:36:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@578cc5b6
+threat_found: Clean
+def_time: 2022-03-15T23:12:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@1f464129
+threat_found: Clean
+def_time: 2022-03-16T00:00:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@4fccd9bb
+threat_found: Clean
+def_time: 2022-03-12T18:53:26.046Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@22cf735
+threat_found: Clean
+def_time: 2022-03-15T22:23:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@33bc33b3
+threat_found: Clean
+def_time: 2022-03-16T00:00:00.000Z
+scan_result: 23
+engine: java.util.HashMap$KeyIterator@1e5e63e4
+threat_found: Clean
+def_time: 2022-03-16T03:18:08.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@37766095
+threat_found: Clean
+def_time: 2022-03-15T08:26:17.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@5206ac11
+threat_found: Clean
+def_time: 2022-03-16T05:49:24.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@753c49
+threat_found: Clean
+def_time: 2022-03-15T19:19:05.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@6dd92ee0
+threat_found: Clean
+def_time: 2022-03-15T08:49:03.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@692f9906
+threat_found: Clean
+def_time: 2022-03-16T03:01:24.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@eaec616
+threat_found: Clean
+def_time: 2022-03-16T00:00:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@271024fe
+threat_found: Clean
+def_time: 2022-03-16T00:21:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@31aa0d2
+threat_found: Clean
+def_time: 2022-03-15T23:35:40.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@1668fe1e
+threat_found: Clean
+def_time: 2022-03-14T12:48:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@6e8e14b3
+threat_found: Clean
+def_time: 2022-03-15T14:19:45.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@481ffa48
+threat_found: Clean
+def_time: 2022-03-15T14:49:42.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@1e55cfa9
+threat_found: Clean
+def_time: 2022-03-15T00:00:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@4f9c4a73
+threat_found: Clean
+def_time: 2022-03-16T02:36:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@51a9f4bf
+threat_found: Clean
+def_time: 2022-03-16T00:00:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@66539978
+threat_found: Clean
+def_time: 2022-03-16T02:30:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@564b2a9c
+threat_found: Clean
+def_time: 2022-03-16T00:28:12.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@7ba92df4
+threat_found: Clean
+def_time: 2022-03-15T21:02:52.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@653b3232
+threat_found: Clean
+def_time: 2022-03-15T20:22:46.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@1fd9ffb4
+threat_found: Clean
+def_time: 2022-03-15T21:00:10.000Z
+scan_result: 23
+engine: java.util.HashMap$KeyIterator@10492919
+threat_found: Clean
+def_time: 2022-03-15T23:03:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@223d7069
+threat_found: Clean
+def_time: 2022-03-16T02:17:00.000Z
+scan_result: 0
+engine: java.util.HashMap$KeyIterator@1e2b7cbe
+threat_found: Clean
+def_time: 2022-03-15T21:38:33.000Z
+scan_result: 0
+
+```

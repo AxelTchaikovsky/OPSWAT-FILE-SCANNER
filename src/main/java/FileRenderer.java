@@ -108,6 +108,7 @@ public class FileRenderer implements FileRendererInterface {
   }
 
   public static void main(String[] args) {
+    System.out.println("hello");
     if (args.length != 2) {
       System.out.println("Invalid operands.");
       return;
@@ -124,7 +125,7 @@ public class FileRenderer implements FileRendererInterface {
     /*
      * Put your api key here:
      */
-    var apiKey = "";
+    var apiKey = "7748d6f208c2fd42db1f6045e07e2b7b";
     var path = args[1];
     FileRenderer fileRenderer = new FileRenderer(apiKey);
     try {
