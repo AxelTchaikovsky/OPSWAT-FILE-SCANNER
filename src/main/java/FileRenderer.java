@@ -73,10 +73,9 @@ public class FileRenderer implements FileRendererInterface {
                 .build();
 
         newResponse = client.newCall(newRequest).execute();
-        jsonObject = new JSONObject(newResponse);
-        progress = jsonObject.getJSONObject("process_info").getInt("progress_percentage");
+        jsonObject = new JSONObject(newResponse.body().string());
+        progress = jsonObject.getJSONObject("scan_results").getInt("progress_percentage");
       }
-      System.out.println(jsonObject.toString());
       printHelper(jsonObject);
     } else if (response.code() == 200) {
       JSONObject json = new JSONObject(response.body().string());
@@ -84,13 +83,16 @@ public class FileRenderer implements FileRendererInterface {
     }
   }
 
-  void printHelper(JSONObject json) {
+  /**
+   * Print scan message to standard out.
+   * @param json Json object fetched from server.
+   */
+  public void printHelper(JSONObject json) {
     System.out.println("filename: " + json.getJSONObject("file_info").getString("display_name"));
     System.out.println("overall status: " + json.getJSONObject("scan_results").getString("scan_all_result_a"));
     var scanDetails = json.getJSONObject("scan_results").getJSONObject("scan_details");
     var keys = scanDetails.keys();
     while (keys.hasNext()) {
-      // TODO: how to get keys from json?
       String key = keys.next();
       JSONObject item = scanDetails.getJSONObject(key);
       String engine = item.keys().toString();
@@ -103,5 +105,37 @@ public class FileRenderer implements FileRendererInterface {
       System.out.println("def_time: " + item.getString("def_time"));
       System.out.println("scan_result: " + item.getInt("scan_result_i"));
     }
+  }
+
+  public static void main(String[] args) {
+    if (args.length != 2) {
+      System.out.println("Invalid operands.");
+      return;
+    }
+    if (!Objects.equals(args[0], "upload_file")) {
+      System.out.println("Invalid operand.");
+      return;
+    }
+    File file = new File(args[1]);
+    if (!file.exists()) {
+      System.out.println("File doesn't exist.");
+      return;
+    }
+    /*
+     * Put your api key here:
+     */
+    var apiKey = "";
+    var path = args[1];
+    FileRenderer fileRenderer = new FileRenderer(apiKey);
+    try {
+      var hash = fileRenderer.getHash(path);
+      var response = fileRenderer.hashLookUp(hash);
+      fileRenderer.printResult(response, path);
+    } catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
   }
 }
